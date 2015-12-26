@@ -24,7 +24,7 @@ module.exports = {
         path: destRootDir,
         filename: '[name].bundle.js',
         chunkname: '[name].bundle.js',
-        publicPath: '/static/'
+        publicPath: '/js/'
     },
     resolve: {
         extensions: ['', '.webpack.js', '.web.js', '.jsx', '.js']

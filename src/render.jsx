@@ -16,6 +16,7 @@ export default function handleRender(req, res) {
             res.redirect(302, redirectLocation.pathname + redirectLocation.search)
         }
         else if (renderProps) {
+
             var html = renderToString(
                 <RoutingContext {...renderProps} />
             );

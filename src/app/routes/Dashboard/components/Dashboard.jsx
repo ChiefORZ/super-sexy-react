@@ -1,12 +1,16 @@
-var React = require('react');
+import React from 'react';
+import auth from './../../../utils/auth';
 
-var Dashboard = React.createClass({
+const Dashboard = React.createClass({
 
-    render: function() {
+    render() {
+        const token = auth.getToken();
         return (
-            <h1 className="Dashboard">
-                Dashboard!
-            </h1>
+            <div className="Dashboard">
+                <h1>Dashboard!</h1>
+                <p>{ token }</p>
+                { this.props.children }
+            </div>
         );
     }
 
