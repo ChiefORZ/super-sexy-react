@@ -1,56 +1,40 @@
+import cookie from 'react-cookie';
+
 module.exports = {
     login: function(email, pass, cb) {
-
-        // if(typeof window != 'undefined' && window.document) {
-            // get token from window.jwt
-        // } else {
-            // get Cookie
-        // }
-        // var parsedJWT = jwt.decode
-        // if(parsedJWT == valid) {
-            // window.jwt = jwtToken;
-            // if (cb) cb(true)
-            // this.onChange(true)
-        // } else {
-            // clearCookie()
-            // window.jwt = null;
-            // if (cb) cb(false)
-            // this.onChange(false)
-        // }
-        if(typeof window == 'undefined') return false;
-        cb = arguments[arguments.length - 1]
-        if (localStorage.token) {
-            if (cb) cb(true)
-            this.onChange(true)
-            return
+        cb = arguments[arguments.length - 1];
+        if (cookie && cookie.load('token')) {
+            if (cb) cb(true);
+            this.onChange(true);
+            return;
         }
-        pretendRequest(email, pass, (res) => {
-            if (res.authenticated) {
-                localStorage.token = res.token
-                if (cb) cb(true)
-                this.onChange(true)
-            } else {
-                if (cb) cb(false)
-                this.onChange(false)
-            }
-        })
+        // login and logout is only possible on the client-side
+        if(typeof window != 'undefined') {
+            pretendRequest(email, pass, (res) => {
+                if (res.authenticated) {
+                    cookie.save('token', res.token);
+                    if (cb) cb(true);
+                    this.onChange(true);
+                } else {
+                    if (cb) cb(false);
+                    this.onChange(false);
+                }
+            });
+        }
     },
 
     getToken: function () {
-        if(typeof window == 'undefined') return false;
-        return localStorage.token
+        return cookie.load('token');
     },
 
     logout: function (cb) {
-        if(typeof window == 'undefined') return false;
-        delete localStorage.token
-        if (cb) cb()
-        this.onChange(false)
+        cookie.remove('token');
+        if (cb) cb();
+        this.onChange(false);
     },
 
     loggedIn: function () {
-        if(typeof window == 'undefined') return false;
-        return !!localStorage.token
+        return !!cookie.load('token');
     },
 
     onChange: function () {}
@@ -66,5 +50,5 @@ function pretendRequest(email, pass, cb) {
         } else {
             cb({ authenticated: false })
         }
-    }, 0)
-}
+    }, 100);
+};

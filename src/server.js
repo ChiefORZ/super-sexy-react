@@ -1,4 +1,5 @@
 import express from 'express';
+import cookieParser from 'cookie-parser';
 import compression from 'compression';
 import handleRender from './render';
 
@@ -14,6 +15,7 @@ var app = express();
 const HOST = process.env.HOST || 'http://localhost';
 const PORT = process.env.PORT || '3000';
 
+app.use(cookieParser());
 app.use(compression());
 
 config.entry.app.unshift(

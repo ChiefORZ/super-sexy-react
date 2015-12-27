@@ -7,18 +7,18 @@ const App = React.createClass({
     getInitialState() {
         return {
             loggedIn: auth.loggedIn()
-        }
+        };
     },
 
     updateAuth(loggedIn) {
         this.setState({
             loggedIn: !!loggedIn
-        })
+        });
     },
 
     componentWillMount() {
-        auth.onChange = this.updateAuth
-        auth.login()
+        auth.onChange = this.updateAuth;
+        auth.login();
     },
 
     render() {

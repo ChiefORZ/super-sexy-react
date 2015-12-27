@@ -36,7 +36,7 @@ const Login = React.createClass({
         return (
             <form onSubmit={this.handleSubmit}>
                 <label><input ref="email" placeholder="email" defaultValue="joe@example.com" /></label>
-                <label><input ref="pass" placeholder="password" /></label> (hint: password)<br />
+                <label><input ref="pass" placeholder="password" defaultValue="password"/></label> (hint: password)<br />
                 <button type="submit">login</button>
                 {this.state.error && (
                     <p>Bad login information</p>
