@@ -1,12 +1,13 @@
-var path = require('path');
-var webpack = require('webpack');
+var path          = require('path');
+var webpack       = require('webpack');
 var sourceRootDir = path.join(__dirname, './src/app');
-var destRootDir = path.join(__dirname, './www/js');
+var destRootDir   = path.join(__dirname, './www/js');
+
+// https://github.com/halt-hammerzeit/webpack-isomorphic-tools
+var WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
+var webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
 
 module.exports = {
-    cache: true,
-    debug: true,
-
     entry: {
         app: [
             path.join(sourceRootDir, 'index.js')
@@ -36,6 +37,15 @@ module.exports = {
                 test: /\.js(x?)$/,
                 exclude: /node_modules/,
                 loader: 'react-hot!babel-loader'
+            },
+            {
+                test: /\.scss$/,
+                loaders: [
+                    'style',
+                    'css?importLoaders=2&sourceMap',
+                    'autoprefixer?browsers=last 2 version',
+                    'sass?outputStyle=expanded&sourceMap&sourceMapContents=true'
+                ]
             }
         ]
     },
@@ -46,6 +56,10 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             names: ['vendor'],
             minChunks: Infinity
-        })
+        }),
+
+        new webpack.optimize.MinChunkSizePlugin({minChunkSize: 50000}),
+
+        webpackIsomorphicToolsPlugin.development()
     ]
 }

@@ -2,6 +2,9 @@ import React from 'react';
 import { Link } from 'react-router';
 import auth from './../../utils/auth';
 
+/* global styles for app */
+var styles = require('./styles/app.scss');
+
 const App = React.createClass({
 
     getInitialState() {

@@ -6,7 +6,8 @@ import handleRender from './render';
 import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
-var config = require('../webpack.config');
+
+var config = (__DEVELOPMENT__)? require('../webpack.dev.config'): require('../webpack.prod.config');
 
 var join = require('path').join;
 
@@ -18,25 +19,47 @@ const PORT = process.env.PORT || '3000';
 app.use(cookieParser());
 app.use(compression());
 
-config.entry.app.unshift(
-    'webpack-hot-middleware/client?http://localhost:' + PORT
-);
+app.use('/', express.static('./www'));
 
-var compiler = webpack(config);
+if(__DEVELOPMENT__) {
 
-app.use(webpackDevMiddleware(compiler, {
-    contentBase: join(__dirname, './www'),
-    hot: true,
-    filename: 'app.bundle.js',
-    publicPath: '/js/',
-    stats: {
-        colors: true,
-        hash: false,
-        chunks: false
-    }
-}));
+    config.entry.app.unshift(
+        'webpack-hot-middleware/client?http://localhost:' + PORT
+    );
 
-app.use(webpackHotMiddleware(compiler));
+    var compiler = webpack(config);
+
+    app.use(webpackDevMiddleware(compiler, {
+        contentBase: join(__dirname, './www'),
+        hot: true,
+        filename: 'app.bundle.js',
+        publicPath: '/js/',
+        stats: {
+            colors: true,
+            hash: false,
+            chunks: false
+        }
+    }));
+
+    app.use(webpackHotMiddleware(compiler));
+
+} else {
+
+    var compiler = webpack(config);
+
+    app.use(webpackDevMiddleware(compiler, {
+        contentBase: join(__dirname, './www'),
+        hot: true,
+        filename: 'app.bundle.js',
+        publicPath: '/js/',
+        stats: {
+            colors: true,
+            hash: false,
+            chunks: false
+        }
+    }));
+
+}
 
 app.use(handleRender);
 
