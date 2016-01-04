@@ -1,4 +1,6 @@
 import React from 'react';
+import Helmet from 'react-helmet';
+
 import auth from './../../../utils/auth';
 
 const Logout = React.createClass({
@@ -7,7 +9,12 @@ const Logout = React.createClass({
     },
 
     render() {
-        return <p>You are now logged out</p>;
+        return (
+            <div className="logout">
+                <Helmet title="Logout"/>
+                <p>You are now logged out</p>
+            </div>
+        );
     }
 })
 

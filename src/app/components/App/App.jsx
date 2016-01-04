@@ -1,6 +1,9 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import { Link } from 'react-router';
-import auth from './../../utils/auth';
+
+import auth from '../../utils/auth';
+import config from '../../../config';
 
 /* global styles for app */
 var styles = require('./styles/app.scss');
@@ -26,7 +29,8 @@ const App = React.createClass({
 
     render() {
         return (
-            <div className="container">
+            <div className="wrapper">
+                <Helmet {...config.app}/>
                 <h2>Super Sexy React</h2>
                 <ul>
                     <li>

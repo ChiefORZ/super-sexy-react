@@ -1,5 +1,7 @@
 import React from 'react';
 import { History } from 'react-router';
+import Helmet from 'react-helmet';
+
 import auth from './../../../utils/auth.js';
 
 const Login = React.createClass({
@@ -34,14 +36,17 @@ const Login = React.createClass({
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
-                <label><input ref="email" placeholder="email" defaultValue="joe@example.com" /></label>
-                <label><input ref="pass" placeholder="password" defaultValue="password"/></label> (hint: password)<br />
-                <button type="submit">login</button>
-                {this.state.error && (
-                    <p>Bad login information</p>
-                )}
-            </form>
+            <div className="login">
+                <Helmet title="Login"/>
+                <form onSubmit={this.handleSubmit}>
+                    <label><input ref="email" placeholder="email" defaultValue="joe@example.com" /></label>
+                    <label><input ref="pass" placeholder="password" defaultValue="password"/></label> (hint: password)<br />
+                    <button type="submit">login</button>
+                    {this.state.error && (
+                        <p>Bad login information</p>
+                    )}
+                </form>
+            </div>
         );
     }
 

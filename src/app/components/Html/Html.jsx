@@ -1,5 +1,6 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
+import Helmet from 'react-helmet';
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
  * Used in server-side code only to wrap the string output of the
@@ -14,9 +15,15 @@ var Html = React.createClass({
     render: function() {
         const {assets, children} = this.props;
         const content = children? renderToString(children): '';
+        const head = Helmet.rewind();
         return (
             <html lang="en-us">
                 <head>
+                    { head.base.toComponent() }
+                    { head.title.toComponent() }
+                    { head.meta.toComponent() }
+                    { head.link.toComponent() }
+                    { head.script.toComponent() }
                     <script src={assets.javascript.vendor} charSet="UTF-8"/>
                     {/* styles (will be present only in production with webpack extract text plugin) */}
                     {Object.keys(assets.styles).map((style, key) =>
