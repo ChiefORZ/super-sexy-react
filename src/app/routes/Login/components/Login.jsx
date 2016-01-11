@@ -8,6 +8,12 @@ const Login = React.createClass({
 
     mixins: [ History ],
 
+    statics: {
+        loadProps: function(params, cb) {
+            cb(null);
+        }
+    },
+
     getInitialState() {
         return {
             error: false

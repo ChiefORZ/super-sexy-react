@@ -2,6 +2,13 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 const PageOne = React.createClass({
+
+    statics: {
+        loadProps: function(params, cb) {
+            cb(null);
+        }
+    },
+
     render() {
         return (
             <div className="page">
@@ -10,6 +17,7 @@ const PageOne = React.createClass({
             </div>
         );
     }
+
 });
 
 module.exports = PageOne;

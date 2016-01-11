@@ -6,6 +6,7 @@ import { renderToString } from 'react-dom/server';
 import { match, RoutingContext } from 'react-router';
 import routes from './app/routes/routes';
 import cookie from 'react-cookie';
+// import AsyncProps, { loadPropsOnServer } from 'async-props';
 
 import Html from './app/components/Html'
 
@@ -21,24 +22,28 @@ export default function handleRender(req, res) {
 
     match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
 
-        if (error) {
-            res.status(500).send(error.message);
-        }
-        else if (redirectLocation) {
-            res.redirect(302, redirectLocation.pathname + redirectLocation.search)
-        }
-        else if (renderProps) {
-            res.send('<!doctype html>\n' +
-                renderToString(
-                    <Html assets={webpackIsomorphicTools.assets()}>
-                        { __DISABLE_SSR__? null: <RoutingContext {...renderProps} />}
-                    </Html>
-                )
-            );
-        }
-        else {
-            res.status(404).send('Not found')
-        }
+        // loadPropsOnServer(renderProps, (err, asyncProps, scriptTag) => {
+
+            if (error) {
+                res.status(500).send(error.message);
+            }
+            else if (redirectLocation) {
+                res.redirect(302, redirectLocation.pathname + redirectLocation.search)
+            }
+            else if (renderProps) {
+                res.send('<!doctype html>\n' +
+                    renderToString(
+                        <Html assets={webpackIsomorphicTools.assets()}>
+                            { __DISABLE_SSR__? null: <RoutingContext {...renderProps} />}
+                        </Html>
+                    )
+                );
+            }
+            else {
+                res.status(404).send('Not found')
+            }
+
+        // });
 
     });
 };
