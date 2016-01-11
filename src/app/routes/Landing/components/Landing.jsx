@@ -5,6 +5,14 @@ require('./styles.scss');
 
 var Landing = React.createClass({
 
+    statics: {
+        loadProps: function(params, cb) {
+            setTimeout(function() {
+                cb(null);
+            },0);
+        }
+    },
+
     render() {
         return (
             <div>

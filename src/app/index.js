@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { match, Router } from 'react-router';
 import { createHistory } from 'history';
+import AsyncProps from 'async-props';
 
 import routes from './routes/routes';
 
@@ -18,7 +19,10 @@ const currentLocation = `${pathname}${search}${hash}`;
 match({ routes, location: currentLocation }, () => {
     // Start rendering to DOM
     render(
-        <Router history={history}>
+        <Router
+          RoutingContext={AsyncProps}
+          history={history}
+          renderLoading={() => <div>Loading...</div>}>
             { routes }
         </Router>,
         document.getElementById('main')

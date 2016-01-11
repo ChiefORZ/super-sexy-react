@@ -2,6 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import { Link } from 'react-router';
 
+import ProgressBar from '../ProgressBar';
 import auth from '../../utils/auth';
 import config from '../../../config';
 
@@ -9,6 +10,12 @@ import config from '../../../config';
 var styles = require('./styles/app.scss');
 
 const App = React.createClass({
+
+    statics: {
+        loadProps: function(params, cb) {
+            cb(null);
+        }
+    },
 
     getInitialState() {
         return {
@@ -30,6 +37,7 @@ const App = React.createClass({
     render() {
         return (
             <div className="wrapper">
+              <ProgressBar autoIncrement={ true } percent={ this.props.loading? 0: 100 } intervalTime={ 100 }/>
                 <Helmet {...config.app}/>
                 <h2>Super Sexy React</h2>
                 <ul>
@@ -43,6 +51,7 @@ const App = React.createClass({
                     <li><Link to="/">Home</Link> (changes depending on auth status)</li>
                     <li><Link to="/user/1">User</Link> (authenticated)</li>
                     <li><Link to="/pageone">Page One</Link> (authenticated)</li>
+                    <li><Link to="/async">Async</Link></li>
                 </ul>
                 { this.props.children || null }
             </div>

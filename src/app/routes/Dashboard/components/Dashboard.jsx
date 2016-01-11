@@ -5,6 +5,12 @@ import auth from './../../../utils/auth';
 
 const Dashboard = React.createClass({
 
+    statics: {
+        loadProps: function(params, cb) {
+            cb(null);
+        }
+    },
+
     render() {
         const token = auth.getToken();
         return (
