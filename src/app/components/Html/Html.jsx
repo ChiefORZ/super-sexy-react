@@ -19,11 +19,11 @@ var Html = React.createClass({
         return (
             <html lang="en-us">
                 <head>
-                    { head.base.toComponent() }
-                    { head.title.toComponent() }
-                    { head.meta.toComponent() }
-                    { head.link.toComponent() }
-                    { head.script.toComponent() }
+                    { head && head.base.toComponent() }
+                    { head && head.title.toComponent() }
+                    { head && head.meta.toComponent() }
+                    { head && head.link.toComponent() }
+                    { head && head.script.toComponent() }
                     <script src={assets.javascript.vendor} charSet="UTF-8"/>
                     {/* styles (will be present only in production with webpack extract text plugin) */}
                     {Object.keys(assets.styles).map((style, key) =>
