@@ -6,11 +6,9 @@ require('./styles.scss');
 var Landing = React.createClass({
 
     statics: {
-        loadProps: function(params, cb) {
-            setTimeout(function() {
-                cb(null);
-            },0);
-        }
+      loadProps: function(params, cb) {
+          cb(null);
+      }
     },
 
     render() {
@@ -20,6 +18,7 @@ var Landing = React.createClass({
                 <h2 className="landing-page-headline">Landing Page!</h2>
                 <p>This page is only shown to unauthenticated users.</p>
                 <p>Partial / Lazy loading. Open the network tab while you navigate. Notice that only the required components are downloaded as you navigate around.</p>
+                { this.props.children || null }
             </div>
         );
     }

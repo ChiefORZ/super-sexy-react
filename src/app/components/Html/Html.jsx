@@ -12,6 +12,13 @@ import Helmet from 'react-helmet';
  */
 
 var Html = React.createClass({
+
+    statics: {
+      loadProps: function(params, cb) {
+        cb(null);
+      }
+    },
+
     render: function() {
         const {assets, children} = this.props;
         const content = children? renderToString(children): '';
