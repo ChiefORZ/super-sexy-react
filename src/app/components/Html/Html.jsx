@@ -1,6 +1,7 @@
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import Helmet from 'react-helmet';
+import serialize from 'serialize-javascript';
 /**
  * Wrapper component containing HTML metadata and boilerplate tags.
  * Used in server-side code only to wrap the string output of the
@@ -20,7 +21,7 @@ var Html = React.createClass({
     },
 
     render: function() {
-        const {assets, children} = this.props;
+        const {assets, children, asyncProps} = this.props;
         const content = children? renderToString(children): '';
         const head = Helmet.rewind();
         return (
@@ -40,6 +41,7 @@ var Html = React.createClass({
                 </head>
                 <body>
                     <div id="main" dangerouslySetInnerHTML={{__html: content}} />
+                      { asyncProps && <script dangerouslySetInnerHTML={{__html: `window.__ASYNC_PROPS__=${serialize(asyncProps.propsArray)};`}} charSet="UTF-8"/> }
                     <script src={assets.javascript.app} charSet="UTF-8"/>
                 </body>
             </html>
