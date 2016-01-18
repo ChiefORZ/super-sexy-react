@@ -1,0 +1,55 @@
+@keyframes progress-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.progressbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  visibility: visible;
+  opacity: 1;
+  transition: all 400ms;
+  z-index: 9999999;
+
+  &.progressbar--ontop {
+    height: 100%;
+  }
+
+  &.progressbar--hide {
+    opacity: 0;
+    visibility: hidden;
+    z-index: -10;
+  }
+
+  &__percent {
+    height: 2px;
+    background: #29D;
+    transition: all 200ms ease;
+  }
+
+  &__spinner {
+    display: block;
+    position: fixed;
+    top: 15px;
+    right: 15px;
+
+    &__icon {
+      width: 18px;
+      height: 18px;
+      box-sizing: border-box;
+
+      border: solid 2px transparent;
+      border-top-color: #29d;
+      border-left-color: #29d;
+      border-radius: 50%;
+
+      animation: progress-spinner 400ms linear infinite;
+    }
+  }
+}

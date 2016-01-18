@@ -11,7 +11,7 @@ function redirectToLogin(nextState, replaceState) {
     if (!auth.loggedIn()) {
         replaceState({
             nextPathname: nextState.location.pathname
-        }, '/login')
+        }, '/login');
     }
 }
 
@@ -21,29 +21,13 @@ function redirectToLogin(nextState, replaceState) {
  */
 function redirectToDashboard(nextState, replaceState) {
     if (auth.loggedIn()) {
-        replaceState(null, '/')
+        replaceState(null, '/');
     }
 }
 
 export default {
     component: require('./../components/App'),
     childRoutes: [
-        require('./Logout'),
-        { onEnter: redirectToDashboard,
-            childRoutes: [
-                // Unauthenticated routes
-                // Redirect to dashboard if user is already logged in
-                require('./Login')
-                // ...
-            ]
-        },
-        { onEnter: redirectToLogin,
-            childRoutes: [
-                // Protected routes that don't share the dashboard UI
-                require('./User')
-                // ...
-            ]
-        },
         { path: '/',
             getComponent: (location, cb) => {
                 // Share the path
@@ -62,65 +46,51 @@ export default {
                     // Only load if we're logged in
                     if (auth.loggedIn()) {
                         return require.ensure([], (require) => {
-                            cb(null, require('./PageOne/components/PageOne'));
-                        }, 'pageone');
+                            cb(null, require('./Subroute/components/Subroute'));
+                        }, 'subroute');
                     }
                     return cb();
                 }
             },
             childRoutes: [
-                require('./PageOne')
+                require('./Subroute')
             ]
-        }
+        },
+        { onEnter: redirectToDashboard,
+          childRoutes: [
+              // Unauthenticated routes
+              // Redirect to dashboard if user is already logged in
+              require('./Login')
+              // ...
+          ]
+        },
+        { onEnter: redirectToLogin,
+          childRoutes: [
+              // Protected routes that don't share the dashboard UI
+              require('./User')
+              // ...
+          ]
+        },
+        require('./Async'),
+        require('./Logout')
 
     ]
 }
 
-// Routes:
-
-
-// <Router>
-//     <Route path="/" component={App}>
-//         <Route path="calendar" component={Calendar} />
-//         <Route path="course/:courseId" component={Course}>
-//             <Route path="announcements" components={{
-//               sidebar: AnnouncementsSidebar,
-//               main: Announcements
-//             }}>
-//                 <Route path=":announcementId" component={Announcement} />
-//             </Route>
-//             <Route path="assignments" components={{
-//               sidebar: AssignmentsSidebar,
-//               main: Assignments
-//             }}>
-//                 <Route path=":assignmentId" component={Assignment} />
-//             </Route>
-//             <Route path="grades" component={CourseGrades} />
-//         </Route>
-//         <Route path="grades" component={Grades} />
-//         <Route path="messages" component={Messages} />
-//         <Route path="profile" component={Calendar} />
-//     </Route>
-// </Router>
-
-
-// <Router>
-//     <Route path="/contact"component={ Contact } />
-//     <Route path="/faq"component={ FAQ } />
-//     <Route path="/features"component={ Features } />
-//     <Route path="/login"component={ Login } />
-//     <Route path="/logout"component={ Logout } />
-//     <Route path="/recover"component={ Recover } />
-//     <Route path="/signup"component={ Signup }/>
-//     <Route path="/" component={ App } indexRoute={ Index }>
-//         <Route></Route>
-//     </Route>
-// </Router>
-
-// <App>
-//     <Index />
-//     <Features />
-
-// </App>
-
-// Every Route
+// <Route component={ App }>
+//   { /* Home (main) route */ }
+//   <Route path="/" component={ Dashboard }>
+//     <Route path="/subroute" component={ Subroute } />
+//   </Route>
+//   { /* Routes if the user is already logged in */ }
+//   <Route onEnter={ redirectToDashboard }>
+//     <Route path="/login" component={ Login } />
+//   </Route>
+//   { /* Routes requiring login */ }
+//   <Route onEnter={ redirectToLogin }>
+//     <Route path="/user/:id" component={ User } />
+//   </Route>
+//   { /* Routes */ }
+//   <Route path="/async" component={ Async } />
+//   <Route path="/logout" component={ Logout }/>
+// </Route>
