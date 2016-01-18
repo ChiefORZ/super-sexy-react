@@ -17,7 +17,8 @@
   "scripts": {
     "build": "webpack --verbose --colors --display-error-details --config webpack.prod.config.js",
     "dev": "better-npm-run start-dev",
-    "start": "better-npm-run start-prod"
+    "start": "better-npm-run start-prod",
+    "postinstall": "node ./npm-scripts/postinstall.js"
   },
   "dependencies": {
     "async-props": "0.2.2",
