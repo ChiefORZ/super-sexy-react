@@ -6,7 +6,8 @@ import { renderToString } from 'react-dom/server';
 import { match, RoutingContext } from 'react-router';
 import routes from './app/routes/routes';
 import cookie from 'react-cookie';
-import AsyncProps, { loadPropsOnServer } from 'async-props';
+// import AsyncProps, { loadPropsOnServer } from 'async-props';
+import AsyncProps, { loadPropsOnServer } from './app/utils/AsyncProps';
 
 import Html from './app/components/Html'
 
