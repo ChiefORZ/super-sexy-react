@@ -4,6 +4,13 @@ import Helmet from 'react-helmet';
 import auth from './../../../utils/auth';
 
 const Logout = React.createClass({
+
+    statics: {
+        loadProps: function(params, cb) {
+            cb(null);
+        }
+    },
+
     componentDidMount() {
         auth.logout();
     },
@@ -16,6 +23,7 @@ const Logout = React.createClass({
             </div>
         );
     }
+
 })
 
 module.exports = Logout;

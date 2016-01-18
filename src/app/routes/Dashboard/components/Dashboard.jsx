@@ -5,6 +5,12 @@ import auth from './../../../utils/auth';
 
 const Dashboard = React.createClass({
 
+    statics: {
+        loadProps: function(params, cb) {
+            cb(null);
+        }
+    },
+
     render() {
         const token = auth.getToken();
         return (
@@ -12,7 +18,7 @@ const Dashboard = React.createClass({
                 <Helmet title="Dashboard"/>
                 <h1>Dashboard!</h1>
                 <p>{ token }</p>
-                { this.props.children }
+                { this.props.children || null }
             </div>
         );
     }

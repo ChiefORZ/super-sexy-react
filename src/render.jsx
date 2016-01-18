@@ -6,6 +6,8 @@ import { renderToString } from 'react-dom/server';
 import { match, RoutingContext } from 'react-router';
 import routes from './app/routes/routes';
 import cookie from 'react-cookie';
+// import AsyncProps, { loadPropsOnServer } from 'async-props';
+import AsyncProps, { loadPropsOnServer } from './app/utils/AsyncProps';
 
 import Html from './app/components/Html'
 
@@ -20,7 +22,6 @@ export default function handleRender(req, res) {
     cookie.plugToRequest(req, res);
 
     match({ routes, location: req.url }, (error, redirectLocation, renderProps) => {
-
         if (error) {
             res.status(500).send(error.message);
         }
@@ -28,13 +29,15 @@ export default function handleRender(req, res) {
             res.redirect(302, redirectLocation.pathname + redirectLocation.search)
         }
         else if (renderProps) {
-            res.send('<!doctype html>\n' +
-                renderToString(
-                    <Html assets={webpackIsomorphicTools.assets()}>
-                        { __DISABLE_SSR__? null: <RoutingContext {...renderProps} />}
-                    </Html>
-                )
-            );
+            loadPropsOnServer(renderProps, (err, asyncProps) => {
+                res.send('<!doctype html>\n' +
+                    renderToString(
+                        <Html assets={ webpackIsomorphicTools.assets() } asyncProps={ asyncProps }>
+                            { __DISABLE_SSR__? null: <AsyncProps { ...renderProps } { ...asyncProps } /> }
+                        </Html>
+                    )
+                );
+            });
         }
         else {
             res.status(404).send('Not found')
