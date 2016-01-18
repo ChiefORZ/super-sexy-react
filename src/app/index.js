@@ -2,7 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { match, Router } from 'react-router';
 import { createHistory } from 'history';
-import AsyncProps from 'async-props';
+// import AsyncProps from 'async-props';
+import AsyncProps from './utils/AsyncProps';
 
 import routes from './routes/routes';
 
