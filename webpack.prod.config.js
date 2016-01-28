@@ -2,6 +2,7 @@ var path              = require('path');
 var webpack           = require('webpack');
 var CleanPlugin       = require('clean-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var autoprefixer      = require('autoprefixer');
 
 var sourceRootDir     = path.join(__dirname, './src/app');
 var relativeDestDir   = './www/js';
@@ -46,14 +47,21 @@ module.exports = {
             },
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 2 version!sass?outputStyle=expanded&sourceMap')
+                loader: ExtractTextPlugin.extract('style', 'css!postcss!sass?outputStyle=expanded&sourceMap')
             }
         ]
     },
 
+    postcss: [
+        autoprefixer({ browsers: ['last 4 version'] })
+    ],
+
     plugins: [
 
         new CleanPlugin([relativeDestDir]),
+
+        // add the Copyright on top of the bundled files
+        new webpack.BannerPlugin("Copyright Flying Unicorns inc."),
 
         // css files from the extract-text-plugin loader
         new ExtractTextPlugin('[name]_[chunkhash].css', {allChunks: true}),
