@@ -43,12 +43,16 @@ module.exports = {
                 loaders: [
                     'style',
                     'css?importLoaders=2&sourceMap',
-                    'autoprefixer?browsers=last 2 version',
+                    'postcss',
                     'sass?outputStyle=expanded&sourceMap&sourceMapContents=true'
                 ]
             }
         ]
     },
+
+    postcss: [
+        autoprefixer({ browsers: ['last 4 version'] })
+    ],
 
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
