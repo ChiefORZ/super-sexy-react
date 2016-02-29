@@ -1,0 +1,4 @@
+--recursive
+--require tests/babelhook
+--reporter spec
+--ui bdd
