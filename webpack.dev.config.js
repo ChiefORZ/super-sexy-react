@@ -1,3 +1,4 @@
+var autoprefixer  = require('autoprefixer');
 var path          = require('path');
 var webpack       = require('webpack');
 var sourceRootDir = path.join(__dirname, './src/app');
