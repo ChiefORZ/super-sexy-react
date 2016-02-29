@@ -11,7 +11,7 @@ describe('app', () => {
 
   it('should run either',() => {
     let beverages = { tea: [ 'rooibos', 'matcha', 'oolong' ] };
-    expect(beverages).to.have.property('tea').with.length(3);
+    expect(beverages).to.have.property('').with.length(3);
   });
 
 });
