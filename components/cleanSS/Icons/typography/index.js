@@ -1,0 +1,10 @@
+export { default as TypographyAlignCenter } from './align-center';
+export { default as TypographyAlignJustify } from './align-justify';
+export { default as TypographyAlignLeft } from './align-left';
+export { default as TypographyAlignRight } from './align-right';
+export { default as TypographyClip } from './clip';
+export { default as TypographyLink } from './link';
+export { default as TypographyTextBold } from './text-bold';
+export { default as TypographyTextItalic } from './text-italic';
+export { default as TypographyTextStrikethtough } from './text-strikethtough';
+export { default as TypographyTextUnderline } from './text-underline';
