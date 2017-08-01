@@ -46,10 +46,9 @@ const theme = {
   },
 };
 
-const description = 'Freelance Web Designer & Front-end Developer from Austria.';
-const keywords =
-  'schaffernak,freelancer,web,designer,developer,front,end,html5,css,javascript,react,backbone,portfolio,cv';
-const title = 'Sebastian Schaffernak';
+const description = 'Boileplate for react based on next.js';
+const keywords = 'react, jsx, next.js, boilerplate, starter, pack, kit, i18n, intl';
+const title = 'Super Sexy React';
 
 const Layout = props =>
   <ThemeProvider theme={theme}>
@@ -59,9 +58,16 @@ const Layout = props =>
         titleTemplate="%s | Sebastian Schaffernak"
         defaultTitle={title}
       >
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
+        {/* Default content encoding. */}
+        <meta name="charset" content="utf-8" />
+        {/* @see http://bit.ly/2f8IaqJ */}
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        {/* This is important to signify your application is mobile responsive! */}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Providing a theme color is good if you are doing a progressive web application. */}
+        <meta name="theme-color" content="#1caff6" />
         {/* Favicons */}
         <link
           rel="apple-touch-icon"
@@ -160,7 +166,6 @@ const Layout = props =>
           name="msapplication-config"
           content="http://droppercdn.blob.core.windows.net/schaffernak/browserconfig.xml"
         />
-        <meta name="theme-color" content="#ffffff" />
         {/* Open Graph */}
         <meta property="og:site_name" content={title} />
         <meta property="og:type" content="website" />
