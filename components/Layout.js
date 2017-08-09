@@ -53,11 +53,7 @@ const title = 'Super Sexy React';
 const Layout = props =>
   <ThemeProvider theme={theme}>
     <Wrapper>
-      <Helmet
-        htmlAttributes={{ lang: 'en' }}
-        titleTemplate="%s | Sebastian Schaffernak"
-        defaultTitle={title}
-      >
+      <Helmet htmlAttributes={{ lang: 'en' }} defaultTitle={title}>
         <meta name="description" content={description} />
         <meta name="keywords" content={keywords} />
         {/* Default content encoding. */}
