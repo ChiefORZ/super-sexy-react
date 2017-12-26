@@ -33,8 +33,10 @@ i18n.use(Backend).use(i18nextMiddleware.LanguageDetector).init({
 
       server.disable('x-powered-by');
 
-      // enforce HTTPS connection
-      server.use(enforce.HTTPS({ trustProtoHeader: true }));
+      if (process.env.NODE_ENV === 'production') {
+        // enforce HTTPS connection
+        server.use(enforce.HTTPS({ trustProtoHeader: true }));
+      }
 
       server.use(compression());
 
