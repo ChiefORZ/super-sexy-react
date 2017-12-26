@@ -1,5 +1,6 @@
 const bodyParser = require('body-parser');
 const compression = require('compression');
+const enforce = require('express-sslify');
 const express = require('express');
 const next = require('next');
 const path = require('path');
@@ -31,6 +32,9 @@ i18n.use(Backend).use(i18nextMiddleware.LanguageDetector).init({
       const server = express();
 
       server.disable('x-powered-by');
+
+      // enforce HTTPS connection
+      server.use(enforce.HTTPS({ trustProtoHeader: true }));
 
       server.use(compression());
 
