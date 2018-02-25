@@ -1,6 +1,14 @@
 {
-  "extends": ["airbnb", "plugin:jsx-control-statements/recommended", "prettier", "prettier/react"],
-  "plugins": ["jsx-control-statements"],
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "plugin:jsx-control-statements/recommended",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "jsx-control-statements"
+  ],
   "rules": {
     "import/first": 0,
     "import/order": 0,
@@ -9,6 +17,7 @@
     "react/forbid-prop-types": [2, { "forbid": ["any"] }],
     "react/jsx-filename-extension": 0,
     "react/jsx-no-undef": [2, { "allowGlobals": true }],
+    "react/jsx-sort-props": 2,
     "react/react-in-jsx-scope": 0,
     "react/require-default-props": 0,
     "sort-imports": [

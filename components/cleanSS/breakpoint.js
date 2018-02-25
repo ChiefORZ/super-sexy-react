@@ -23,9 +23,11 @@ const breakpoint = (name, breakpoints = defaultBreakpoints) => {
     return (...args) => css(...args);
   }
 
-  return (...args) => css`@media (min-width: ${breakpoint}) {
-    ${css(...args)}
-  }`;
+  return (...args) => css`
+    @media (min-width: ${breakpoint}) {
+      ${css(...args)};
+    }
+  `;
 };
 
 /**
@@ -39,7 +41,7 @@ export const map = (value, mapValueToCSS, breakpoints) => {
 
   if (type === 'object') {
     return [
-      mapValueToCSS(undefined), //set the default value
+      mapValueToCSS(undefined), // set the default value
       ...Object.keys(value).map(key => breakpoint(key, breakpoints)(...mapValueToCSS(value[key]))),
     ];
   }
