@@ -1,7 +1,6 @@
 import { Bold } from './cleanSS/Typography';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
-import i18Next from '../i18n';
 import styled from 'styled-components';
 import { translate } from 'react-i18next';
 
@@ -67,7 +66,7 @@ const getNextLanguage = lng => {
   return 'en';
 };
 
-const Sidebar = ({ i18n, t, url }) =>
+const Sidebar = ({ i18n, t, url }) => (
   <div>
     <SidebarAside left>
       <If condition={url.pathname !== '/'}>
@@ -83,7 +82,8 @@ const Sidebar = ({ i18n, t, url }) =>
         {t(`common:${getNextLanguage(i18n.languages[0])}`)}
       </SidebarButton>
     </SidebarAside>
-  </div>;
+  </div>
+);
 
 Sidebar.propTypes = {
   i18n: PropTypes.object,
@@ -91,13 +91,6 @@ Sidebar.propTypes = {
   url: PropTypes.object,
 };
 
-const TranslatedSidebar = translate(['common'], { i18n: i18Next, wait: process.browser })(Sidebar);
-
-// Passing down initial translations
-// use req.i18n instance on serverside to avoid overlapping requests set the language wrong
-TranslatedSidebar.getInitialProps = async ({ req }) => {
-  if (req && !process.browser) return i18Next.getInitialProps(req, ['common']);
-  return {};
-};
+const TranslatedSidebar = translate('common')(Sidebar);
 
 export default TranslatedSidebar;
