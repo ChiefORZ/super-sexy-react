@@ -1,6 +1,8 @@
 import { Bold } from './cleanSS/Typography';
+import { If } from 'react-extras';
 import Link from 'next/link';
 import PropTypes from 'prop-types';
+import React from 'react';
 import styled from 'styled-components';
 import { translate } from 'react-i18next';
 
@@ -35,7 +37,6 @@ const SidebarButton = styled.button`
   background: 0;
   border: 0;
   padding: 0.5em;
-
   &:focus {
     outline: 0;
     outline: -webkit-focus-ring-color none;
@@ -66,30 +67,35 @@ const getNextLanguage = lng => {
   return 'en';
 };
 
-const Sidebar = ({ i18n, t, url }) => (
-  <div>
-    <SidebarAside left>
-      <If condition={url.pathname !== '/'}>
-        <Link href="/">
-          <SidebarAnchor href="/">
-            <Bold>^</Bold>&nbsp;&nbsp;&nbsp;Back Home
-          </SidebarAnchor>
-        </Link>
-      </If>
-    </SidebarAside>
-    <SidebarAside right>
-      <SidebarButton onClick={() => i18n.changeLanguage(getNextLanguage(i18n.languages[0]))}>
-        {t(`common:${getNextLanguage(i18n.languages[0])}`)}
-      </SidebarButton>
-    </SidebarAside>
-  </div>
-);
+class Sidebar extends React.PureComponent {
+  static propTypes = {
+    i18n: PropTypes.object,
+    t: PropTypes.func,
+    url: PropTypes.object,
+  };
 
-Sidebar.propTypes = {
-  i18n: PropTypes.object,
-  t: PropTypes.func,
-  url: PropTypes.object,
-};
+  render() {
+    const { i18n, t, url } = this.props;
+    return (
+      <div>
+        <SidebarAside left>
+          <If condition={url.pathname !== '/'}>
+            <Link href="/">
+              <SidebarAnchor href="/">
+                <Bold>^</Bold>&nbsp;&nbsp;&nbsp;Back Home
+              </SidebarAnchor>
+            </Link>
+          </If>
+        </SidebarAside>
+        <SidebarAside right>
+          <SidebarButton onClick={() => i18n.changeLanguage(getNextLanguage(i18n.languages[0]))}>
+            {t(`common:${getNextLanguage(i18n.languages[0])}`)}
+          </SidebarButton>
+        </SidebarAside>
+      </div>
+    );
+  }
+}
 
 const TranslatedSidebar = translate('common')(Sidebar);
 
