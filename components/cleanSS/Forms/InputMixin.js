@@ -7,11 +7,11 @@ const InputMixin = styled.input`
 
   height: auto;
   margin: inherit;
-  margin-top: .25em;
-  margin-bottom: .25em;
-  padding: .5em .6em;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  padding: 0.5em 0.6em;
 
-  transition: border-color .2s;
+  transition: border-color 0.2s;
 
   border-width: 1px;
   border-style: solid;

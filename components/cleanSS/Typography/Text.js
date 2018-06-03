@@ -27,6 +27,7 @@ const Text = Div.extend`
             return 'text-align: left;';
         }
       }
+      return '';
     }}
   `};
   ${props => breakpoint('md', props.theme.breakpoints)`
@@ -42,6 +43,7 @@ const Text = Div.extend`
             return 'text-align: left;';
         }
       }
+      return '';
     }}
   `} ${props => breakpoint('lg', props.theme.breakpoints)`
     ${() => {
@@ -56,6 +58,7 @@ const Text = Div.extend`
             return 'text-align: left;';
         }
       }
+      return '';
     }}
   `} ${props => breakpoint('xl', props.theme.breakpoints)`
     ${() => {
@@ -70,6 +73,7 @@ const Text = Div.extend`
             return 'text-align: left;';
         }
       }
+      return '';
     }}
   `};
 `;

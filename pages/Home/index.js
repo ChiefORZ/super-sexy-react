@@ -2,11 +2,8 @@ import PropTypes from 'prop-types';
 import i18n from '../../i18n';
 import { translate } from 'react-i18next';
 
-// eslint-disable-next-line jsx-control-statements/jsx-jcs-no-undef
-const Home = ({ t, url }) =>
-  <div>
-    {t('hello')}
-  </div>;
+// eslint-disable-next-line no-unused-vars
+const Home = ({ t, url }) => <div>{t('hello')}</div>;
 
 Home.propTypes = {
   t: PropTypes.func,

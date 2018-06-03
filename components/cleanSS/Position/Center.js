@@ -1,6 +1,8 @@
 import { Div } from '../Colors';
 
-const Center = Div.extend`margin: 0 auto;`;
+const Center = Div.extend`
+  margin: 0 auto;
+`;
 
 Center.displayName = 'Center';
 

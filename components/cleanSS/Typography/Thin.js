@@ -1,6 +1,8 @@
 import { Span } from '../Colors';
 
-const Thin = Span.extend`font-weight: 300;`;
+const Thin = Span.extend`
+  font-weight: 300;
+`;
 
 Thin.displayName = 'Thin';
 

@@ -78,8 +78,7 @@ injectGlobal`
   }
 `;
 
-Router.onRouteChangeStart = url => {
-  console.log(`Loading: ${url}`);
+Router.onRouteChangeStart = () => {
   NProgress.start();
 };
 Router.onRouteChangeComplete = () => NProgress.done();

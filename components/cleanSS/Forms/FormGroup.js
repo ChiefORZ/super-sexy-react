@@ -9,20 +9,19 @@ const FormGroup = Div.extend`
         & select,
         & textarea {
           display: block;
-
           margin: .25em 0;
         }
       `;
     }
+    return '';
+  }} ${props => {
     if (props.aligned) {
       return `
         & input,
         & textarea,
         & select {
           display: inline-block;
-
           margin: .25em 0;
-
           vertical-align: middle;
         }
         & textarea {
@@ -30,24 +29,21 @@ const FormGroup = Div.extend`
         }
         & label {
           display: block;
-
           width: 100%;
         }
       `;
     }
+    return '';
   }};
   ${props => breakpoint('md', props.theme.breakpoints)`
     ${() =>
       props.aligned &&
       `
       margin-bottom: .5em;
-
       & label {
         display: inline-block;
-
         width: 10em;
         margin: 0 1em 0 0;
-
         text-align: right;
         vertical-align: middle;
       }

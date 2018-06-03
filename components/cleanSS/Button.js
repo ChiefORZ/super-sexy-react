@@ -23,12 +23,12 @@ const Button = styled.button`
   display: inline-block;
   zoom: 1;
 
-  margin: .25em 0;
-  padding: .5em 1em;
+  margin: 0.25em 0;
+  padding: 0.5em 1em;
 
   cursor: pointer;
   user-select: none;
-  transition: all linear .2s;
+  transition: all linear 0.2s;
   text-align: center;
   vertical-align: middle;
   white-space: nowrap;
@@ -58,7 +58,7 @@ const Button = styled.button`
   &:focus {
     text-decoration: none;
 
-    opacity: .8;
+    opacity: 0.8;
     color: ${props => props.theme.colors.white};
     border-color: ${props =>
       props.color ? props.theme.colors[props.color] : props.theme.colors.accent};
@@ -74,7 +74,7 @@ const Button = styled.button`
       props.color ? props.theme.colors[props.color] : props.theme.colors.accent};
     background-color: ${props =>
       props.color ? props.theme.colors[props.color] : props.theme.colors.accent};
-    box-shadow: inset 0 1px 0 rgba(0, 0, 0, .2);
+    box-shadow: inset 0 1px 0 rgba(0, 0, 0, 0.2);
   }
 
   ${props =>

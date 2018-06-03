@@ -1,6 +1,8 @@
 import { Div } from '../Colors';
 
-const Relative = Div.extend`position: relative;`;
+const Relative = Div.extend`
+  position: relative;
+`;
 
 Relative.displayName = 'Relative';
 

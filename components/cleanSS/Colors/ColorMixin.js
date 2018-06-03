@@ -8,19 +8,22 @@ const ColorMixin = styled.div`
         ? `background-color: ${props.theme.colors[props.bgColor]};`
         : `background-color: ${props.bgColor};`;
     }
+    return '';
   }} ${props => {
-      if (props.borderColor) {
-        return props.theme.colors[props.borderColor]
-          ? `border-color: ${props.theme.colors[props.borderColor]};`
-          : `border-color: ${props.borderColor};`;
-      }
-    }} ${props => {
-      if (props.fontColor) {
-        return props.theme.colors[props.fontColor]
-          ? `color: ${props.theme.colors[props.fontColor]};`
-          : `color: ${props.fontColor};`;
-      }
-    }};
+  if (props.borderColor) {
+    return props.theme.colors[props.borderColor]
+      ? `border-color: ${props.theme.colors[props.borderColor]};`
+      : `border-color: ${props.borderColor};`;
+  }
+  return '';
+}} ${props => {
+  if (props.fontColor) {
+    return props.theme.colors[props.fontColor]
+      ? `color: ${props.theme.colors[props.fontColor]};`
+      : `color: ${props.fontColor};`;
+  }
+  return '';
+}};
 `;
 
 ColorMixin.propTypes = {

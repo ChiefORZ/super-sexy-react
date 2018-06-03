@@ -1,6 +1,8 @@
 import { Div } from '../Colors';
 
-const Fixed = Div.extend`position: fixed;`;
+const Fixed = Div.extend`
+  position: fixed;
+`;
 
 Fixed.displayName = 'Fixed';
 

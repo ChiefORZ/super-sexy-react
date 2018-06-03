@@ -22,8 +22,8 @@ if (!dev && cluster.isMaster) {
   console.log(`Node cluster master ${process.pid} is running`);
 
   // Fork workers.
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < numCPUs; i++) {
-    // eslint-disable-line no-plusplus
     cluster.fork();
   }
 

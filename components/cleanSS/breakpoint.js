@@ -12,19 +12,19 @@ const defaultBreakpoints = {
  * @returns {*}
  */
 const breakpoint = (name, breakpoints = defaultBreakpoints) => {
-  let breakpoint = breakpoints[name];
+  let breakpointX = breakpoints[name];
 
-  if (typeof breakpoint === 'number') {
-    breakpoint = `${breakpoint / 16}em`; // assume number is px and convert to 'em's
+  if (typeof breakpointX === 'number') {
+    breakpointX = `${breakpointX / 16}em`; // assume number is px and convert to 'em's
   }
 
   // special case for 0 to avoid wrapping in an unnecessary @media
-  if (parseInt(breakpoint, 10) === 0) {
+  if (parseInt(breakpointX, 10) === 0) {
     return (...args) => css(...args);
   }
 
   return (...args) => css`
-    @media (min-width: ${breakpoint}) {
+    @media (min-width: ${breakpointX}) {
       ${css(...args)};
     }
   `;

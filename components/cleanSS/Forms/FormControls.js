@@ -2,7 +2,7 @@ import { Div } from '../Colors';
 import breakpoint from '../breakpoint';
 
 const FormControls = Div.extend`
-  margin: .5em 0 0 0;
+  margin: 0.5em 0 0 0;
 
   ${props => breakpoint('md', props.theme.breakpoints)`
     ${() =>

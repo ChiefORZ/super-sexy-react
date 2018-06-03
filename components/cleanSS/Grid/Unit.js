@@ -7,28 +7,29 @@ const widthMixin = ({ width, theme }) =>
     width,
     (value = 1) => {
       switch (value) {
-        case 'min':
+        case 'min': {
           return `
             flex-grow: 0;
             flex-basis: auto;
             width: auto;
             max-width: none;
           `;
-
-        case 'max':
+        }
+        case 'max': {
           return `
             flex-grow: 1;
             flex-basis: auto;
             width: auto;
             max-width: none;
           `;
-
-        default:
+        }
+        default: {
           const pct = Math.round(value * 100);
           return `
-            flex-basis: ${pct}%;
-            max-width: ${pct}%;
-          `;
+              flex-basis: ${pct}%;
+              max-width: ${pct}%;
+            `;
+        }
       }
     },
     theme.breakpoints
@@ -49,11 +50,9 @@ const visibilityMixin = ({ visible, theme }) =>
 const Unit = Div.extend`
   display: inline-block;
   zoom: 1;
-
   vertical-align: top;
   letter-spacing: normal;
   word-spacing: normal;
-
   text-rendering: auto;
   ${widthMixin} ${visibilityMixin};
 `;

@@ -1,6 +1,8 @@
 import { Span } from '../Colors';
 
-const Capitalize = Span.extend`text-transform: capitalize;`;
+const Capitalize = Span.extend`
+  text-transform: capitalize;
+`;
 
 Capitalize.displayName = 'Capitalize';
 

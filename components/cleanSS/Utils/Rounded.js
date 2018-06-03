@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { Span } from '../Colors';
 
-const Rounded = Span.extend`border-radius: ${props => props.radius || 3}px;`;
+const Rounded = Span.extend`
+  border-radius: ${props => props.radius || 3}px;
+`;
 
 Rounded.displayName = 'Rounded';
 

@@ -1,7 +1,9 @@
 import { Div } from '../Colors';
 import PropTypes from 'prop-types';
 
-const Float = Div.extend`float: ${props => (props.right && 'right') || 'left'};`;
+const Float = Div.extend`
+  float: ${props => (props.right && 'right') || 'left'};
+`;
 
 Float.displayName = 'Float';
 

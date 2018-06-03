@@ -41,15 +41,14 @@ class MyDocument extends Document {
     const main = sheet.collectStyles(<Main />);
     const styleTags = sheet.getStyleElement();
     return (
+      // eslint-disable-next-line jsx-a11y/html-has-lang
       <html {...this.helmetHtmlAttrComponents}>
         <Head>
           {this.helmetHeadComponents}
           {styleTags}
         </Head>
         <body {...this.helmetBodyAttrComponents}>
-          <div className="root">
-            {main}
-          </div>
+          <div className="root">{main}</div>
           <NextScript />
         </body>
       </html>

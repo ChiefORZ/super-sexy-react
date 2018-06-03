@@ -1,6 +1,8 @@
 import { Span } from '../Colors';
 
-const Italic = Span.extend`font-style: italic;`;
+const Italic = Span.extend`
+  font-style: italic;
+`;
 
 Italic.displayName = 'Italic';
 

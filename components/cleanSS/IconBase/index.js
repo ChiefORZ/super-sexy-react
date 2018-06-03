@@ -5,7 +5,6 @@ const IconBase = ({ children, color, size, style, ...props }, { reactIconBase = 
   const computedSize = size || reactIconBase.size || '1em';
   return (
     <svg
-      children={children}
       fill="currentColor"
       height={computedSize}
       preserveAspectRatio="xMidYMid meet"
@@ -18,11 +17,14 @@ const IconBase = ({ children, color, size, style, ...props }, { reactIconBase = 
         ...(reactIconBase.style || {}),
         ...style,
       }}
-    />
+    >
+      {children}
+    </svg>
   );
 };
 
 IconBase.propTypes = {
+  children: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.node), PropTypes.node]),
   color: PropTypes.string,
   size: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   style: PropTypes.object,

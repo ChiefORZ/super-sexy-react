@@ -23,7 +23,7 @@ export default function TypographyTextStrikethtough(props) {
 			c1.366-0.337,2.548-0.868,3.578-1.595c1.02-0.727,1.833-1.664,2.44-2.813c0.606-1.155,0.91-2.554,0.91-4.213
 			c0-1.448-0.249-2.657-0.737-3.633c-0.359-0.72-0.827-1.353-1.398-1.903h4.066c1.139,0,2.061-0.895,2.061-2.001
 			C31.989,14.228,31.067,13.333,29.929,13.333z"
-              style="fill-rule:evenodd;clip-rule:evenodd;"
+              style="fill-rule:evenodd;clip-rule:evenodd;" // eslint-disable-line react/style-prop-object
             />
           </g>
         </g>
