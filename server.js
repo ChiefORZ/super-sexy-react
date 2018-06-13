@@ -89,7 +89,14 @@ if (!dev && cluster.isMaster) {
 
             server.get('*', (req, res) => {
               const parsedUrl = url.parse(req.url, true);
-              handle(req, res, parsedUrl);
+              const { pathname } = parsedUrl;
+
+              if (pathname === '/service-worker.js') {
+                const filePath = path.join(__dirname, '.next', pathname);
+                app.serveStatic(req, res, filePath);
+              } else {
+                handle(req, res, parsedUrl);
+              }
             });
 
             // Error Handling

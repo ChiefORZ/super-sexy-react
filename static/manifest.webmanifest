@@ -1,0 +1,9 @@
+{
+  "name": "Super Sexy React",
+  "short_name": "Super Sexy React",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#eee",
+  "theme_color": "#1caff6",
+  "description": "A starter kit for react based on next.js"
+}

@@ -1,13 +1,33 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import i18n from '../../i18n';
 import { translate } from 'react-i18next';
 
 // eslint-disable-next-line no-unused-vars
-const Home = ({ t, url }) => <div>{t('hello')}</div>;
+class Home extends React.Component {
+  componentDidMount() {
+    // eslint-disable-next-line no-undef
+    if ('serviceWorker' in navigator) {
+      // eslint-disable-next-line no-undef
+      navigator.serviceWorker
+        .register('/service-worker.js')
+        .then(() => {
+          console.log('service worker registration successful');
+        })
+        .catch(err => {
+          console.warn('service worker registration failed', err.message);
+        });
+    }
+  }
+
+  render() {
+    const { t } = this.props;
+    return <div>{t('hello')}</div>;
+  }
+}
 
 Home.propTypes = {
   t: PropTypes.func,
-  url: PropTypes.object,
 };
 
 const TranslatedHome = translate(['home', 'common'], { i18n, wait: process.browser })(Home);

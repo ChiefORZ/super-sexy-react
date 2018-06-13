@@ -1,4 +1,5 @@
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 const { ANALYZE } = process.env;
 
@@ -28,6 +29,18 @@ module.exports = {
         })
       );
     }
+    config.plugins.push(
+      new SWPrecacheWebpackPlugin({
+        verbose: true,
+        staticFileGlobsIgnorePatterns: [/\.next\//],
+        runtimeCaching: [
+          {
+            handler: 'networkFirst',
+            urlPattern: /^https?.*/,
+          },
+        ],
+      })
+    );
 
     return config;
   },
